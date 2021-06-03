@@ -10,12 +10,9 @@ exports.register = async (req, res, next) => {
 			email,
 			password,
 		});
-		res.status(201).json({
-			success: true,
-			user,
-		});
+		sendToken(user, 201, res);
 	} catch (err) {
-		next(error);
+		next(err);
 	}
 };
 
@@ -33,15 +30,9 @@ exports.login = async (req, res, next) => {
 		if (!isMatch) {
 			return next(new ErrorResponse('Invalid Credentials', 401));
 		}
-		res.status(200).json({
-			success: true,
-			token: 'dhbchd',
-		});
+		sendToken(user, 200, res);
 	} catch (err) {
-		res.status(500).json({
-			success: false,
-			error: err.message,
-		});
+		next(err);
 	}
 };
 
@@ -51,4 +42,9 @@ exports.forgotpassword = (req, res, next) => {
 
 exports.resetpassword = (req, res, next) => {
 	res.send('Reset Password Route');
+};
+
+const sendToken = (user, statusCode, res) => {
+	const token = user.getSignedToken();
+	res.status(statusCode).json({ success: true, token });
 };
