@@ -24,14 +24,15 @@ const LoginScreen = ({ history }) => {
 
 		try {
 			const { data } = await axios.post(
-				"/api/auth/login",
+				"http://localhost:5000/api/auth/login",
 				{ email, password },
 				config
 			);
 			localStorage.setItem("authToken", data.token);
 			history.push("/");
 		} catch (error) {
-			setError(error.response.data.error);
+			console.log(error);
+			setError(error.res);
 			setTimeout(() => {
 				setError("");
 			}, 5000);

@@ -6,6 +6,9 @@ const PrivateScreen = ({ history }) => {
 	const [privateData, setPrivateData] = useState("");
 
 	useEffect(() => {
+		if (!localStorage.getItem("authToken")) {
+			history.push("/login");
+		}
 		const fetchPrivateDate = async () => {
 			const config = {
 				headers: {
@@ -15,7 +18,10 @@ const PrivateScreen = ({ history }) => {
 			};
 
 			try {
-				const { data } = await axios.get("/api/private", config);
+				const { data } = await axios.get(
+					"http://localhost:5000/api/private",
+					config
+				);
 				setPrivateData(data.data);
 			} catch (error) {
 				localStorage.removeItem("authToken");
@@ -24,11 +30,11 @@ const PrivateScreen = ({ history }) => {
 		};
 
 		fetchPrivateDate();
-	}, []);
+	}, [history]);
 
 	const logoutHandler = () => {
 		localStorage.removeItem("authToken");
-		history.pushState("/login");
+		history.push("/login");
 	};
 
 	return error ? (
