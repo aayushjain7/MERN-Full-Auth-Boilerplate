@@ -2,6 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const sendMail = require('./sendMail');
+const sendEmail = require('./sendMail');
 
 const userCtrl = {
 	register: async (req, res, next) => {
@@ -93,6 +94,21 @@ const userCtrl = {
 				const access_token = createAccessToken({ id: user.id });
 				res.json({ access_token });
 			});
+		} catch (err) {
+			return res.status(500).json({ msg: err.message });
+		}
+	},
+
+	forgotPassword: async (req, res) => {
+		try {
+			const { email } = req.body;
+			const user = await User.findOne({ email });
+			if (!user) return res.status(400).json({ msg: 'This email does not exist!' });
+
+			const access_token = createAccessToken({ id: user._id });
+			const url = `${process.env.CLIENT_URL}/user/reset/${access_token}`;
+			sendEmail(email, url, 'Reset your password');
+			res.json({ msg: 'Re-send the password, please check your email' });
 		} catch (err) {
 			return res.status(500).json({ msg: err.message });
 		}
