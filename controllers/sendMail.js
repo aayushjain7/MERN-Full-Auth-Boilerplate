@@ -5,7 +5,7 @@ const OAUTH_PLAYGROUND = 'https://developers.google.com/oauthplayground';
 
 //GO to https://developers.google.com/oauthplayground
 //enter your client id and seecret there and authorize through https://mail.google.com
-//signin with the same google cloud id and after signin click on exchange auth code for token and get the refresh token 
+//signin with the same google cloud id and after signin click on exchange auth code for token and get the refresh token
 
 const {
 	MAILING_SERVICE_CLIENT_ID,
@@ -43,11 +43,11 @@ const sendEmail = (to, url, txt) => {
 	const mailOptions = {
 		from: SENDER_EMAIL_ADDRESS,
 		to: to,
-		subject: 'DevAT Channel',
+		subject: 'Mern Auth',
 		html: `
             <div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
-            <h2 style="text-align: center; text-transform: uppercase;color: teal;">Welcome to the DevAT channel.</h2>
-            <p>Congratulations! You're almost set to start using DEVAT✮SHOP.
+            <h2 style="text-align: center; text-transform: uppercase;color: teal;">Welcome to the Mern Auth.</h2>
+            <p>Congratulations! You're almost set to start using MERN✮AUTH.
                 Just click the button below to validate your email address.
             </p>
             
