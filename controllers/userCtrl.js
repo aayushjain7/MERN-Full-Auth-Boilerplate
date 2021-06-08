@@ -177,6 +177,22 @@ const userCtrl = {
 			return res.status(500).json({ msg: err.message });
 		}
 	},
+
+	updateUserRole: async (req, res) => {
+		try {
+			const { role } = req.body;
+			await User.findOneAndUpdate(
+				{ _id: req.params.id },
+				{
+					role,
+				}
+			);
+
+			res.json({ msg: 'Role Update Success!' });
+		} catch (err) {
+			return res.status(500).json({ msg: err.message });
+		}
+	},
 };
 
 function validateEmail(email) {
