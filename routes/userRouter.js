@@ -12,5 +12,7 @@ router.post('/reset', auth, userCtrl.resetPassword);
 router.get('/infor', auth, userCtrl.getUserInfor);
 router.get('/all_infor', auth, authAdmin, userCtrl.getUsersAllInfor);
 router.get('/logout', userCtrl.logout);
+router.patch('/update', auth, userCtrl.updateUser);
+router.patch('/update_role/:id', auth, authAdmin, userCtrl.updateUserRole);
 
 module.exports = router;
