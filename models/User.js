@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema(
 		},
 		avatar: {
 			type: String,
-			default: 'https://res.cloudinary.com/aaayushjain7/image/upload/v1622895313/thumb_15951118880user_opqvts.png',
+			default: 'https://res.cloudinary.com/aayushjain7/image/upload/v1622895313/thumb_15951118880user_opqvts.png',
 		},
 	},
 	{

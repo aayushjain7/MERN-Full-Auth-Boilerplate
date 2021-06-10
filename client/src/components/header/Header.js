@@ -48,7 +48,7 @@ function Header() {
 					<Link to='/'>Mern Auth</Link>
 				</h1>
 			</div>
-			<ul>
+			<ul style={transForm}>
 				<li>
 					<Link to='/'>
 						<i className='fas fa-shopping-cart'></i>Cart
