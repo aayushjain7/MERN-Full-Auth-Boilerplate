@@ -72,6 +72,9 @@ function Login() {
 					<Link to='/forgot_password'>Forgot your password?</Link>
 				</div>
 			</form>
+			<p>
+				New User? <Link to='/register'>Register</Link>
+			</p>
 		</div>
 	);
 }
