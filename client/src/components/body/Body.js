@@ -6,6 +6,7 @@ import Register from './auth/Register';
 import { useSelector } from 'react-redux';
 import NotFound from '../utils/notfound/NotFound';
 import ForgotPassword from './auth/ForgotPassword';
+import ResetPassword from './auth/ResetPassword';
 
 function Body() {
 	const auth = useSelector((state) => state.auth);
@@ -16,6 +17,7 @@ function Body() {
 				<Route path='/login' component={isLogged ? NotFound : Login} exact />
 				<Route path='/register' component={isLogged ? NotFound : Register} exact />
 				<Route path='/forgot_password' component={isLogged ? NotFound : ForgotPassword} exact />
+				<Route path='/user/reset/:reset_token' component={isLogged ? NotFound : ResetPassword} exact />
 				<Route exact path='/user/activate/:activation_token' component={ActivationEmail} />
 			</Switch>
 		</section>
