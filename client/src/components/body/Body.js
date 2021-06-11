@@ -8,6 +8,7 @@ import NotFound from '../utils/notfound/NotFound';
 import ForgotPassword from './auth/ForgotPassword';
 import ResetPassword from './auth/ResetPassword';
 import Profile from './profile/Profile';
+import EditUser from './profile/EditUser';
 
 function Body() {
 	const auth = useSelector((state) => state.auth);
@@ -21,6 +22,7 @@ function Body() {
 				<Route path='/user/reset/:reset_token' component={isLogged ? NotFound : ResetPassword} exact />
 				<Route exact path='/user/activate/:activation_token' component={ActivationEmail} />
 				<Route path='/profile' component={!isLogged ? NotFound : Profile} exact />
+				<Route path='/edit_user/:id' component={!isAdmin ? NotFound : EditUser} exact />
 			</Switch>
 		</section>
 	);

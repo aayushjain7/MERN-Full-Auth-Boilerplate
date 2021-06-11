@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { isLength, isMatch } from '../../utils/validation/Validation';
 import { showSuccessMsg, showErrMsg } from '../../utils/notification/Notification';
-//import { fetchAllUsers, dispatchGetAllUsers } from '../../../redux/actions/usersAction';
+import { fetchAllUsers, dispatchGetAllUsers } from '../../../redux/actions/usersAction';
 
 const initialState = {
 	name: '',
@@ -18,7 +18,7 @@ function Profile() {
 	const auth = useSelector((state) => state.auth);
 	const token = useSelector((state) => state.token);
 
-	//const users = useSelector((state) => state.users);
+	const users = useSelector((state) => state.users);
 
 	const { user, isAdmin } = auth;
 	const [data, setData] = useState(initialState);
@@ -30,13 +30,13 @@ function Profile() {
 
 	const dispatch = useDispatch();
 
-	/* 	useEffect(() => {
+	useEffect(() => {
 		if (isAdmin) {
 			fetchAllUsers(token).then((res) => {
 				dispatch(dispatchGetAllUsers(res));
 			});
 		}
-	}, [token, isAdmin, dispatch, callback]); */
+	}, [token, isAdmin, dispatch, callback]);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -225,7 +225,7 @@ function Profile() {
 								</tr>
 							</thead>
 							<tbody>
-								{/* {users.map((user) => (
+								{users.map((user) => (
 									<tr key={user._id}>
 										<td>{user._id}</td>
 										<td>{user.name}</td>
@@ -244,7 +244,7 @@ function Profile() {
 											<i className='fas fa-trash-alt' title='Remove' onClick={() => handleDelete(user._id)}></i>
 										</td>
 									</tr>
-								))} */}
+								))}
 							</tbody>
 						</table>
 					</div>
